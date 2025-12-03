@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Código da Mente Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #000000;
+            padding: 60px 24px;
+        }
+
+        .hero-label {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #666666;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 8vw, 72px);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 32px;
+            color: #ffffff;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            font-weight: 300;
+            color: #999999;
+            margin-bottom: 64px;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 48px;
+            background-color: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 4px 24px rgba(255, 255, 255, 0.15);
+        }
+
+        .cta-button:hover {
+            background-color: #e6e6e6;
+            box-shadow: 0 6px 32px rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 120px 24px;
+            background-color: #0d0d0d;
+        }
+
+        section:nth-child(even) {
+            background-color: #000000;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 700;
+            margin-bottom: 32px;
+            letter-spacing: -1px;
+        }
+
+        .section-text {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #b3b3b3;
+            font-weight: 300;
+            margin-bottom: 24px;
+        }
+
+        /* O QUE É */
+        .what-is {
+            text-align: center;
+        }
+
+        .what-is .section-text {
+            max-width: 680px;
+            margin: 0 auto 24px;
+        }
+
+        /* O QUE APRENDE */
+        .learn-list {
+            list-style: none;
+            max-width: 680px;
+            margin: 48px auto 0;
+        }
+
+        .learn-list li {
+            padding: 24px 0;
+            border-bottom: 1px solid #1a1a1a;
+            font-size: 16px;
+            color: #cccccc;
+            font-weight: 400;
+        }
+
+        .learn-list li:last-child {
+            border-bottom: none;
+        }
+
+        .learn-list li::before {
+            content: "—";
+            margin-right: 16px;
+            color: #666666;
+        }
+
+        /* CONTEÚDO INCLUSO */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 48px;
+        }
+
+        .content-item {
+            padding: 40px 32px;
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+        }
+
+        .content-item-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .content-item-desc {
+            font-size: 15px;
+            color: #999999;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* PROVA */
+        .proof {
+            text-align: center;
+            padding: 100px 24px;
+        }
+
+        .proof-box {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 48px;
+            border: 1px solid #1a1a1a;
+            background-color: #0a0a0a;
+        }
+
+        .proof-text {
+            font-size: 17px;
+            line-height: 1.9;
+            color: #cccccc;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 120px 24px;
+        }
+
+        .faq-item {
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .faq-answer {
+            font-size: 16px;
+            color: #999999;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 80px 24px 40px;
+            text-align: center;
+            background-color: #000000;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: #666666;
+            margin-top: 32px;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            text-align: center;
+            padding: 100px 24px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 20px;
+            }
+
+            section {
+                padding: 80px 20px;
+            }
+
+            .proof-box {
+                padding: 32px 24px;
+            }
+
+            .content-item {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <div class="hero-label">Acesso Restrito</div>
+        <h1>O CÓDIGO DA<br>MENTE DIGITAL</h1>
+        <p class="hero-subtitle">Você não escreve. Você influencia.</p>
+        <a href="COLOQUE_SEU_CHECKOUT_AQUI" class="cta-button">Acessar Agora</a>
+    </div>
+
+    <!-- O QUE É -->
+    <section class="what-is">
+        <div class="container">
+            <h2 class="section-title">O que é isto</h2>
+            <p class="section-text">
+                Um sistema de comunicação baseado em percepção, leitura emocional e presença digital. Você aprende a estruturar mensagens que criam impressão duradoura sem forçar persuasão.
+            </p>
+            <p class="section-text">
+                Não há scripts. Não há fórmulas mágicas. Apenas princípios aplicáveis de influência real. Funciona em textos, áudios e presenças digitais.
+            </p>
+        </div>
+    </section>
+
+    <!-- O QUE APRENDE -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">O que você aprende</h2>
+            <ul class="learn-list">
+                <li>Como estruturar mensagens que permanecem na memória do receptor</li>
+                <li>Técnicas de presença digital que transmitem autoridade sem esforço</li>
+                <li>Leitura emocional aplicada a textos e interações online</li>
+                <li>Princípios de contraste e silêncio estratégico na comunicação</li>
+                <li>Como criar densidade psicológica em qualquer formato de conteúdo</li>
+                <li>Métodos de ancoragem perceptiva para posicionamento de marca</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO INCLUSO -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Conteúdo incluso</h2>
+            <div class="content-grid">
+                <div class="content-item">
+                    <div class="content-item-title">Manual Completo (PDF)</div>
+                    <div class="content-item-desc">
+                        Documento estruturado com os 12 princípios de influência digital. Acesso permanente.
+                    </div>
+                </div>
+                <div class="content-item">
+                    <div class="content-item-title">Templates de Aplicação</div>
+                    <div class="content-item-desc">
+                        Estruturas prontas para adaptar a qualquer contexto. Vendas, autoridade, conteúdo.
+                    </div>
+                </div>
+                <div class="content-item">
+                    <div class="content-item-title">Áudio de Presença</div>
+                    <div class="content-item-desc">
+                        Exercício guiado de 15 minutos para calibrar presença antes de criar conteúdo.
+                    </div>
+                </div>
+                <div class="content-item">
+                    <div class="content-item-title">Ritual de 7 Dias</div>
+                    <div class="content-item-desc">
+                        Protocolo diário para implementar os princípios de forma progressiva e mensurável.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROVA -->
+    <section class="proof">
+        <div class="container">
+            <div class="proof-box">
+                <p class="proof-text">
+                    Este método segue princípios reais de percepção, leitura emocional e presença digital. Nada aqui é decorado. É aplicado.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA INTERMEDIÁRIA -->
+    <section class="cta-section">
+        <div class="container">
+            <a href="COLOQUE_SEU_CHECKOUT_AQUI" class="cta-button">Obter Acesso Completo</a>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Perguntas diretas</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Para quem é este conteúdo?</div>
+                <div class="faq-answer">
+                    Para quem cria conteúdo, vende produtos digitais, constrói presença online ou precisa comunicar com impacto. Serve para criadores, consultores, marcas pessoais e profissionais que dependem de comunicação escrita.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">É um curso em vídeo?</div>
+                <div class="faq-answer">
+                    Não. É um manual em PDF, templates aplicáveis, um áudio de presença e um ritual de implementação. Tudo projetado para aplicação direta, sem horas de conteúdo desnecessário.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Quanto tempo leva para aplicar?</div>
+                <div class="faq-answer">
+                    O manual pode ser lido em 90 minutos. O ritual de 7 dias estrutura a implementação progressiva. Alguns princípios são aplicáveis imediatamente. Outros requerem prática consciente.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Funciona para qualquer nicho?</div>
+                <div class="faq-answer">
+                    Sim. Os princípios são independentes de nicho. Eles lidam com percepção humana, não com mercados específicos. Você adapta ao seu contexto.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Há garantia?</div>
+                <div class="faq-answer">
+                    Não. Este produto não funciona para quem busca resultado sem aplicação. Se você implementar os princípios, verá mudança na forma como sua comunicação é recebida. Mas isso exige trabalho consciente.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <a href="https://pay.cakto.com.br/u5977qi_671277" class="cta-button">Acessar O Código</a>
+        <p class="footer-text">
+            © 2025 O Código da Mente Digital. Todos os direitos reservados.
+        </p>
+    </footer>
+
+    <!-- COLOQUE O PIXEL AQUI -->
+    <!-- Exemplo: Meta Pixel, TikTok Pixel, Google Analytics -->
+    <!-- 
+    <script>
+        // SEU CÓDIGO DE PIXEL AQUI
+    </script>
+    -->
+
+</body>
+</html>
