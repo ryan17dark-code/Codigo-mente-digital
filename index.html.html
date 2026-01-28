@@ -3,32 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O Código da Mente Digital</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Controle de Atenção</title>
+    
+    <!-- META PIXEL -->
+    <!-- Adicionar Meta Pixel aqui quando ativar -->
+    
+    <!-- TIKTOK PIXEL -->
+    <!-- Adicionar TikTok Pixel aqui quando ativar -->
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #000000;
-            color: #ffffff;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial', sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.4;
+            overflow-x: hidden;
         }
-
+        
         .container {
-            max-width: 800px;
+            max-width: 680px;
             margin: 0 auto;
             padding: 0 24px;
         }
-
-        /* HERO SECTION */
+        
+        /* PRIMEIRA DOBRA */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -36,383 +40,298 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background-color: #000000;
-            padding: 60px 24px;
+            padding: 60px 0;
         }
-
-        .hero-label {
-            font-size: 11px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #666666;
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
-
-        .hero h1 {
-            font-size: clamp(36px, 8vw, 72px);
-            font-weight: 700;
-            letter-spacing: -2px;
+        
+        .headline {
+            font-size: 40px;
+            font-weight: 900;
             line-height: 1.1;
-            margin-bottom: 32px;
-            color: #ffffff;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(18px, 3vw, 24px);
-            font-weight: 300;
-            color: #999999;
-            margin-bottom: 64px;
-            letter-spacing: 0.5px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 20px 48px;
-            background-color: #ffffff;
-            color: #000000;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            box-shadow: 0 4px 24px rgba(255, 255, 255, 0.15);
-        }
-
-        .cta-button:hover {
-            background-color: #e6e6e6;
-            box-shadow: 0 6px 32px rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
-        }
-
-        /* SECTIONS */
-        section {
-            padding: 120px 24px;
-            background-color: #0d0d0d;
-        }
-
-        section:nth-child(even) {
-            background-color: #000000;
-        }
-
-        .section-title {
-            font-size: clamp(28px, 5vw, 42px);
-            font-weight: 700;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
             letter-spacing: -1px;
         }
-
-        .section-text {
-            font-size: 17px;
-            line-height: 1.8;
-            color: #b3b3b3;
-            font-weight: 300;
-            margin-bottom: 24px;
-        }
-
-        /* O QUE É */
-        .what-is {
-            text-align: center;
-        }
-
-        .what-is .section-text {
-            max-width: 680px;
-            margin: 0 auto 24px;
-        }
-
-        /* O QUE APRENDE */
-        .learn-list {
-            list-style: none;
-            max-width: 680px;
-            margin: 48px auto 0;
-        }
-
-        .learn-list li {
-            padding: 24px 0;
-            border-bottom: 1px solid #1a1a1a;
-            font-size: 16px;
-            color: #cccccc;
+        
+        .subheadline {
+            font-size: 20px;
             font-weight: 400;
+            color: #999;
+            margin-bottom: 48px;
         }
-
-        .learn-list li:last-child {
-            border-bottom: none;
-        }
-
-        .learn-list li::before {
-            content: "—";
-            margin-right: 16px;
-            color: #666666;
-        }
-
-        /* CONTEÚDO INCLUSO */
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            margin-top: 48px;
-        }
-
-        .content-item {
-            padding: 40px 32px;
-            background-color: #0a0a0a;
-            border: 1px solid #1a1a1a;
-        }
-
-        .content-item-title {
+        
+        .btn {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 20px 48px;
             font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-
-        .content-item-desc {
-            font-size: 15px;
-            color: #999999;
-            font-weight: 300;
-            line-height: 1.6;
+        
+        .btn:hover {
+            background: #e0e0e0;
+            transform: scale(1.02);
         }
-
-        /* PROVA */
-        .proof {
-            text-align: center;
-            padding: 100px 24px;
+        
+        /* QUEBRA DE CRENÇA */
+        .beliefs {
+            padding: 120px 0;
+            background: #0a0a0a;
         }
-
-        .proof-box {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 48px;
-            border: 1px solid #1a1a1a;
-            background-color: #0a0a0a;
-        }
-
-        .proof-text {
-            font-size: 17px;
-            line-height: 1.9;
-            color: #cccccc;
-            font-weight: 300;
-            font-style: italic;
-        }
-
-        /* FAQ */
-        .faq {
-            padding: 120px 24px;
-        }
-
-        .faq-item {
-            margin-bottom: 48px;
-            padding-bottom: 48px;
-            border-bottom: 1px solid #1a1a1a;
-        }
-
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-
-        .faq-question {
-            font-size: 20px;
+        
+        .belief-item {
+            font-size: 24px;
             font-weight: 600;
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
+            margin-bottom: 32px;
+            padding-left: 24px;
+            border-left: 3px solid #fff;
         }
-
-        .faq-answer {
+        
+        /* PROBLEMA */
+        .problems {
+            padding: 120px 0;
+            background: #000;
+        }
+        
+        .problem-list {
+            margin-top: 60px;
+        }
+        
+        .problem-item {
+            font-size: 20px;
+            margin-bottom: 24px;
+            padding: 24px;
+            background: #0a0a0a;
+            border-left: 4px solid #666;
+            color: #ccc;
+        }
+        
+        /* REPOSICIONAMENTO */
+        .reframe {
+            padding: 120px 0;
+            background: #0a0a0a;
+            text-align: center;
+        }
+        
+        .reframe-text {
+            font-size: 28px;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 40px;
+        }
+        
+        /* ENTREGÁVEL */
+        .deliverable {
+            padding: 120px 0;
+            background: #000;
+        }
+        
+        .deliverable-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 48px;
+            text-align: center;
+        }
+        
+        .deliverable-list {
+            margin-top: 48px;
+        }
+        
+        .deliverable-item {
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 28px;
+            padding-left: 32px;
+            position: relative;
+        }
+        
+        .deliverable-item:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            font-size: 28px;
+        }
+        
+        /* FECHAMENTO */
+        .closing {
+            padding: 120px 0 80px;
+            background: #0a0a0a;
+            text-align: center;
+        }
+        
+        .closing-text {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 48px;
+            line-height: 1.3;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 20px 48px;
             font-size: 16px;
-            color: #999999;
-            font-weight: 300;
-            line-height: 1.7;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-
-        /* FOOTER */
-        footer {
-            padding: 80px 24px 40px;
-            text-align: center;
-            background-color: #000000;
-            border-top: 1px solid #1a1a1a;
+        
+        .btn-secondary:hover {
+            background: #fff;
+            color: #000;
         }
-
-        .footer-text {
-            font-size: 13px;
-            color: #666666;
-            margin-top: 32px;
-        }
-
-        /* CTA SECTION */
-        .cta-section {
-            text-align: center;
-            padding: 100px 24px;
-        }
-
-        /* RESPONSIVE */
+        
+        /* RESPONSIVO */
         @media (max-width: 768px) {
-            .hero {
-                padding: 40px 20px;
+            .headline {
+                font-size: 28px;
             }
-
-            section {
-                padding: 80px 20px;
+            
+            .subheadline {
+                font-size: 16px;
             }
-
-            .proof-box {
-                padding: 32px 24px;
+            
+            .belief-item {
+                font-size: 20px;
             }
-
-            .content-item {
-                padding: 32px 24px;
+            
+            .problem-item {
+                font-size: 17px;
+            }
+            
+            .reframe-text {
+                font-size: 22px;
+            }
+            
+            .deliverable-title {
+                font-size: 26px;
+            }
+            
+            .deliverable-item {
+                font-size: 19px;
+            }
+            
+            .closing-text {
+                font-size: 26px;
+            }
+            
+            .btn {
+                padding: 18px 36px;
+                font-size: 16px;
             }
         }
     </style>
 </head>
 <body>
-
-    <!-- HERO SECTION -->
-    <div class="hero">
-        <div class="hero-label">Acesso Restrito</div>
-        <h1>O CÓDIGO DA<br>MENTE DIGITAL</h1>
-        <p class="hero-subtitle">Você não escreve. Você influencia.</p>
-        <a href="COLOQUE_SEU_CHECKOUT_AQUI" class="cta-button">Acessar Agora</a>
-    </div>
-
-    <!-- O QUE É -->
-    <section class="what-is">
+    
+    <!-- PRIMEIRA DOBRA -->
+    <section class="hero">
         <div class="container">
-            <h2 class="section-title">O que é isto</h2>
-            <p class="section-text">
-                Um sistema de comunicação baseado em percepção, leitura emocional e presença digital. Você aprende a estruturar mensagens que criam impressão duradoura sem forçar persuasão.
-            </p>
-            <p class="section-text">
-                Não há scripts. Não há fórmulas mágicas. Apenas princípios aplicáveis de influência real. Funciona em textos, áudios e presenças digitais.
-            </p>
+            <h1 class="headline">Se ninguém para nos seus vídeos, não é o algoritmo. É você.</h1>
+            <p class="subheadline">Atenção não é sorte. É estrutura.</p>
+            <button class="btn" onclick="window.location.href='https://pay.cakto.com.br/u5977qi_671277'">Entender como isso funciona</button>
         </div>
     </section>
-
-    <!-- O QUE APRENDE -->
-    <section>
+    
+    <!-- QUEBRA DE CRENÇA -->
+    <section class="beliefs">
         <div class="container">
-            <h2 class="section-title">O que você aprende</h2>
-            <ul class="learn-list">
-                <li>Como estruturar mensagens que permanecem na memória do receptor</li>
-                <li>Técnicas de presença digital que transmitem autoridade sem esforço</li>
-                <li>Leitura emocional aplicada a textos e interações online</li>
-                <li>Princípios de contraste e silêncio estratégico na comunicação</li>
-                <li>Como criar densidade psicológica em qualquer formato de conteúdo</li>
-                <li>Métodos de ancoragem perceptiva para posicionamento de marca</li>
-            </ul>
+            <div class="belief-item">Atenção não é talento</div>
+            <div class="belief-item">Retenção não é sorte</div>
+            <div class="belief-item">Algoritmo reage a comportamento</div>
+            <div class="belief-item">Quem controla atenção controla o jogo</div>
         </div>
     </section>
-
-    <!-- CONTEÚDO INCLUSO -->
-    <section>
+    
+    <!-- PROBLEMA -->
+    <section class="problems">
         <div class="container">
-            <h2 class="section-title">Conteúdo incluso</h2>
-            <div class="content-grid">
-                <div class="content-item">
-                    <div class="content-item-title">Manual Completo (PDF)</div>
-                    <div class="content-item-desc">
-                        Documento estruturado com os 12 princípios de influência digital. Acesso permanente.
-                    </div>
-                </div>
-                <div class="content-item">
-                    <div class="content-item-title">Templates de Aplicação</div>
-                    <div class="content-item-desc">
-                        Estruturas prontas para adaptar a qualquer contexto. Vendas, autoridade, conteúdo.
-                    </div>
-                </div>
-                <div class="content-item">
-                    <div class="content-item-title">Áudio de Presença</div>
-                    <div class="content-item-desc">
-                        Exercício guiado de 15 minutos para calibrar presença antes de criar conteúdo.
-                    </div>
-                </div>
-                <div class="content-item">
-                    <div class="content-item-title">Ritual de 7 Dias</div>
-                    <div class="content-item-desc">
-                        Protocolo diário para implementar os princípios de forma progressiva e mensurável.
-                    </div>
-                </div>
+            <div class="problem-list">
+                <div class="problem-item">Seus vídeos morrem no começo</div>
+                <div class="problem-item">As pessoas passam sem pensar</div>
+                <div class="problem-item">Você fala, ninguém fica</div>
+                <div class="problem-item">O feed te engole</div>
             </div>
         </div>
     </section>
-
-    <!-- PROVA -->
-    <section class="proof">
+    
+    <!-- REPOSICIONAMENTO -->
+    <section class="reframe">
         <div class="container">
-            <div class="proof-box">
-                <p class="proof-text">
-                    Este método segue princípios reais de percepção, leitura emocional e presença digital. Nada aqui é decorado. É aplicado.
-                </p>
+            <p class="reframe-text">Isso não é sobre viralizar.<br>É sobre entender por que as pessoas param.</p>
+            <p class="reframe-text">Quem entende atenção joga outro jogo.</p>
+        </div>
+    </section>
+    
+    <!-- ENTREGÁVEL -->
+    <section class="deliverable" id="deliverable">
+        <div class="container">
+            <h2 class="deliverable-title">O que você vai ter acesso</h2>
+            <div class="deliverable-list">
+                <div class="deliverable-item">Estrutura de retenção</div>
+                <div class="deliverable-item">Modelos de início</div>
+                <div class="deliverable-item">Áudios explicativos</div>
+                <div class="deliverable-item">Templates prontos</div>
             </div>
         </div>
     </section>
-
-    <!-- CTA INTERMEDIÁRIA -->
-    <section class="cta-section">
+    
+    <!-- FECHAMENTO -->
+    <section class="closing">
         <div class="container">
-            <a href="COLOQUE_SEU_CHECKOUT_AQUI" class="cta-button">Obter Acesso Completo</a>
+            <p class="closing-text">Ou você controla atenção<br>ou continua invisível.</p>
+            <button class="btn-secondary" onclick="window.location.href='https://pay.cakto.com.br/u5977qi_671277'">Entender como isso funciona</button>
         </div>
     </section>
-
-    <!-- FAQ -->
-    <section class="faq">
-        <div class="container">
-            <h2 class="section-title">Perguntas diretas</h2>
-            
-            <div class="faq-item">
-                <div class="faq-question">Para quem é este conteúdo?</div>
-                <div class="faq-answer">
-                    Para quem cria conteúdo, vende produtos digitais, constrói presença online ou precisa comunicar com impacto. Serve para criadores, consultores, marcas pessoais e profissionais que dependem de comunicação escrita.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">É um curso em vídeo?</div>
-                <div class="faq-answer">
-                    Não. É um manual em PDF, templates aplicáveis, um áudio de presença e um ritual de implementação. Tudo projetado para aplicação direta, sem horas de conteúdo desnecessário.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Quanto tempo leva para aplicar?</div>
-                <div class="faq-answer">
-                    O manual pode ser lido em 90 minutos. O ritual de 7 dias estrutura a implementação progressiva. Alguns princípios são aplicáveis imediatamente. Outros requerem prática consciente.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Funciona para qualquer nicho?</div>
-                <div class="faq-answer">
-                    Sim. Os princípios são independentes de nicho. Eles lidam com percepção humana, não com mercados específicos. Você adapta ao seu contexto.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Há garantia?</div>
-                <div class="faq-answer">
-                    Não. Este produto não funciona para quem busca resultado sem aplicação. Se você implementar os princípios, verá mudança na forma como sua comunicação é recebida. Mas isso exige trabalho consciente.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <a href="https://pay.cakto.com.br/u5977qi_671277" class="cta-button">Acessar O Código</a>
-        <p class="footer-text">
-            © 2025 O Código da Mente Digital. Todos os direitos reservados.
-        </p>
-    </footer>
-
-    <!-- COLOQUE O PIXEL AQUI -->
-    <!-- Exemplo: Meta Pixel, TikTok Pixel, Google Analytics -->
+    
+    <!-- CHECKOUT FUTURO -->
     <!-- 
-    <script>
-        // SEU CÓDIGO DE PIXEL AQUI
-    </script>
+        Adicionar checkout aqui quando ativar vendas
+        Eventos de pixel a serem implementados:
+        - ViewContent (já está ativo na página)
+        - InitiateCheckout (quando clicar no botão de compra)
+        - Purchase (quando completar compra)
     -->
-
+    
+    <script>
+        // Scroll suave para seção de entregável (não mais necessário, mas mantido para referência)
+        function scrollToDeliverable() {
+            document.getElementById('deliverable').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+            
+            // EVENTO PIXEL: ViewContent
+            // Adicionar tracking aqui quando pixels estiverem ativos
+            // fbq('track', 'ViewContent');
+            // ttq.track('ViewContent');
+        }
+        
+        // Handler para botão de waitlist (não mais necessário, mas mantido para referência)
+        function handleWaitlist() {
+            // EVENTO PIXEL: Lead
+            // Adicionar tracking aqui quando pixels estiverem ativos
+            // fbq('track', 'Lead');
+            // ttq.track('ClickButton');
+            
+            // Redireciona para checkout
+            window.location.href = 'https://pay.cakto.com.br/u5977qi_671277';
+        }
+        
+        // Track pageview quando pixels estiverem ativos
+        // fbq('track', 'PageView');
+        // ttq.track('PageView');
+        
+        // TRACKING DE CLIQUE NOS BOTÕES
+        // Quando ativar os pixels, adicione este código antes do redirecionamento:
+        // fbq('track', 'InitiateCheckout');
+        // ttq.track('ClickButton');
+    </script>
+    
 </body>
 </html>
