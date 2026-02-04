@@ -1,1 +1,1197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Os Primeiros 3 Segundos - Método de Retenção para Criadores</title>
+    
+    <!-- Os pixels serão carregados via JavaScript após consentimento -->
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #00ff88;
+            --accent-dim: #00cc6a;
+            --error: #ff4444;
+            --border: #2a2a2a;
+        }
+        
+        body {
+            font-family: 'Lexend', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Cookie Consent Banner */
+        .cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 24px;
+            z-index: 9999;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .cookie-consent.show {
+            transform: translateY(0);
+        }
+        
+        .cookie-consent-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .cookie-consent p {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+            flex: 1;
+            min-width: 280px;
+        }
+        
+        .cookie-consent-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .cookie-btn {
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Lexend', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        .cookie-btn-accept {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+        
+        .cookie-btn-accept:hover {
+            background: var(--accent-dim);
+        }
+        
+        .cookie-btn-decline {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+        
+        .cookie-btn-decline:hover {
+            border-color: var(--text-secondary);
+        }
+        
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .container-wide {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 255, 136, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 255, 136, 0.02) 0%, transparent 50%),
+                var(--bg-primary);
+        }
+        
+        .hero-content {
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .eyebrow {
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+        
+        h1 {
+            font-size: clamp(36px, 8vw, 64px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+        
+        h1 .highlight {
+            color: var(--accent);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .subheadline {
+            font-size: clamp(18px, 3vw, 24px);
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            font-weight: 300;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 20px 48px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            background: var(--accent-dim);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 255, 136, 0.3);
+        }
+        
+        .video-placeholder {
+            margin-top: 64px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Fallback para browsers que não suportam aspect-ratio */
+        @supports not (aspect-ratio: 16/9) {
+            .video-placeholder {
+                height: 0;
+                padding-bottom: 56.25%;
+            }
+            .video-placeholder-text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+        
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(0,255,136,0.05) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%); }
+            100% { transform: translateX(100%) translateY(100%); }
+        }
+        
+        .video-placeholder-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        section h2 {
+            font-size: clamp(32px, 6vw, 48px);
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        
+        section h3 {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        section p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        /* Problem Section */
+        .problem {
+            background: var(--bg-secondary);
+        }
+        
+        .problem-list {
+            list-style: none;
+            margin: 40px 0;
+        }
+        
+        .problem-list li {
+            padding: 20px 0 20px 40px;
+            position: relative;
+            font-size: 18px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .problem-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .problem-list li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: var(--error);
+            font-size: 20px;
+        }
+        
+        .truth-bomb {
+            background: var(--bg-card);
+            border-left: 4px solid var(--accent);
+            padding: 32px;
+            margin: 40px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .truth-bomb p {
+            color: var(--text-primary);
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0;
+        }
+        
+        /* Belief Break Section */
+        .belief-break {
+            background: var(--bg-primary);
+        }
+        
+        .insight-box {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0, 255, 136, 0.05) 100%);
+            padding: 32px;
+            border-radius: 12px;
+            margin: 32px 0;
+            border: 1px solid var(--border);
+        }
+        
+        .insight-box h3 {
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+        
+        /* Method Section */
+        .method {
+            background: var(--bg-secondary);
+        }
+        
+        .steps {
+            margin: 48px 0;
+        }
+        
+        .step {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background: var(--accent);
+            color: var(--bg-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .step-content h4 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            background: var(--bg-primary);
+        }
+        
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+        
+        .benefit-item {
+            background: var(--bg-card);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        
+        .benefit-item h4 {
+            color: var(--accent);
+            margin-bottom: 16px;
+            font-size: 20px;
+        }
+        
+        /* For Who Section */
+        .for-who {
+            background: var(--bg-secondary);
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+        
+        .comparison-box {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        
+        .comparison-box h3 {
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .comparison-box.for h3::before {
+            content: '✓';
+            color: var(--accent);
+        }
+        
+        .comparison-box.not-for h3::before {
+            content: '✗';
+            color: var(--error);
+        }
+        
+        .comparison-box ul {
+            list-style: none;
+        }
+        
+        .comparison-box li {
+            padding: 12px 0;
+            font-size: 16px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .comparison-box li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Proof Section */
+        .proof {
+            background: var(--bg-primary);
+        }
+        
+        .proof-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+        
+        .proof-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 32px;
+            text-align: center;
+        }
+        
+        .proof-card .metric {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        
+        .proof-card .label {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+        
+        /* Offer Section */
+        .offer {
+            background: var(--bg-secondary);
+        }
+        
+        .offer-box {
+            background: var(--bg-card);
+            border: 2px solid var(--accent);
+            border-radius: 16px;
+            padding: 48px;
+            margin: 40px 0;
+        }
+        
+        .offer-content h3 {
+            font-size: 28px;
+            margin-bottom: 32px;
+        }
+        
+        .includes-list {
+            list-style: none;
+            margin: 32px 0;
+        }
+        
+        .includes-list li {
+            padding: 16px 0 16px 40px;
+            position: relative;
+            font-size: 18px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .includes-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .includes-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .price {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .price .amount {
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .price .currency {
+            font-size: 28px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, var(--bg-primary) 100%);
+            text-align: center;
+            padding: 120px 0;
+        }
+        
+        .cta-section h2 {
+            margin-bottom: 32px;
+        }
+        
+        .cta-section .cta-button {
+            font-size: 20px;
+            padding: 24px 64px;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            background: var(--bg-secondary);
+        }
+        
+        .faq-list {
+            margin: 40px 0;
+        }
+        
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 24px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            text-align: left;
+            font-family: 'Lexend', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        .faq-question:hover {
+            background: rgba(0, 255, 136, 0.05);
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        
+        .faq-answer-content {
+            padding: 0 24px 24px;
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-primary);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+        
+        footer p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="eyebrow">Para criadores de conteúdo</div>
+                <h1>Os primeiros 3 segundos decidem se alguém <span class="highlight">fica ou ignora</span> seu vídeo</h1>
+                <p class="subheadline">
+                    Você não precisa de mais algoritmo. Você precisa dominar o começo. 
+                    Aprenda a prender atenção desde o primeiro frame.
+                </p>
+                <a href="https://pay.cakto.com.br/u5977qi_671277" class="cta-button" aria-label="Quero prender atenção nos primeiros segundos">Quero prender atenção nos primeiros segundos</a>
+                
+                <p style="margin-top: 20px; font-size: 14px; color: var(--text-secondary);">
+                    Testado em vídeos com menos de 100 views que passaram de 7s de retenção média
+                </p>
+                
+                <div class="video-placeholder">
+                    <!-- SUBSTITUA ESTE DIV POR UM VÍDEO REAL -->
+                    <span class="video-placeholder-text">[ Seu vídeo de apresentação aqui ]</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- PROBLEM SECTION -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="fade-in">Você posta, mas ninguém assiste</h2>
+            <p class="fade-in">E eu sei exatamente o que você pensa:</p>
+            
+            <ul class="problem-list fade-in">
+                <li>O algoritmo me odeia</li>
+                <li>Estou num shadowban</li>
+                <li>Preciso postar no horário certo</li>
+                <li>Meu conteúdo não tem problema, é só azar</li>
+                <li>Vou tentar mais um formato, quem sabe funciona</li>
+            </ul>
+            
+            <div class="truth-bomb fade-in">
+                <p>O problema não é o algoritmo.<br>
+                O problema está nos primeiros 3 segundos do seu vídeo.</p>
+            </div>
+            
+            <p class="fade-in">
+                Enquanto você culpa fatores externos, criadores com menos seguidores 
+                que você estão conseguindo milhares de visualizações porque dominam uma coisa simples: 
+                <strong style="color: var(--text-primary);">como começar um vídeo.</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- BELIEF BREAK SECTION -->
+    <section class="belief-break">
+        <div class="container">
+            <h2 class="fade-in">A verdade que ninguém te conta</h2>
+            <p class="fade-in">
+                Atenção não é sorte. Atenção não é talento.<br>
+                Atenção é uma habilidade que você treina.
+            </p>
+            
+            <div class="insight-box fade-in">
+                <h3>O segredo está no hook</h3>
+                <p>
+                    Não adianta ter o melhor conteúdo do mundo se ninguém passa dos primeiros segundos. 
+                    A economia da atenção é cruel: se você não provar o valor do seu vídeo imediatamente, 
+                    é preciso fazer a pessoa <strong>querer assistir</strong> desde o frame 1.
+                </p>
+            </div>
+            
+            <p class="fade-in">
+                Você já tem a capacidade de criar. O que está faltando é estrutura. 
+                É saber exatamente o que falar, como falar, e em qual ordem, para que o cérebro 
+                da pessoa não consiga parar de assistir.
+            </p>
+        </div>
+    </section>
+
+    <!-- METHOD SECTION -->
+    <section class="method">
+        <div class="container">
+            <h2 class="fade-in">O método dos primeiros segundos</h2>
+            <p class="fade-in">
+                Não é fórmula mágica. É entender como funciona o comportamento de quem está 
+                scrollando e aplicar gatilhos de retenção que foram testados milhares de vezes.
+            </p>
+            
+            <div class="steps fade-in">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Hook magnético</h4>
+                        <p>Aprenda a criar aberturas que causam curiosidade imediata, sem clickbait vazio.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Promessa clara</h4>
+                        <p>Mostre o valor do vídeo em até 2 segundos. Se demorar, a pessoa já foi.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Retenção contínua</h4>
+                        <p>Estruture o vídeo para manter a atenção do início ao fim, sem quedas bruscas.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="fade-in">
+                Isso não é teoria. É o que separa um vídeo de 200 views de um de 200 mil. 
+                E você pode aplicar em qualquer nicho, qualquer formato.
+            </p>
+            
+            <div style="text-align: center; margin-top: 48px;" class="fade-in">
+                <a href="https://pay.cakto.com.br/u5977qi_671277" class="cta-button" style="background: var(--bg-card); color: var(--accent); border: 2px solid var(--accent);" aria-label="Quero aplicar isso no meu próximo vídeo">
+                    Quero aplicar isso no meu próximo vídeo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS SECTION -->
+    <section class="benefits">
+        <div class="container">
+            <h2 class="fade-in">O que você vai aprender</h2>
+            
+            <div class="benefit-grid fade-in">
+                <div class="benefit-item">
+                    <h4>Como estruturar os 3 primeiros segundos</h4>
+                    <p>Fórmulas testadas de abertura que fazem a pessoa parar de scrollar</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4>Gatilhos de curiosidade que funcionam</h4>
+                    <p>Entenda o que gera curiosidade real, sem parecer fake ou forçado</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4>Padrões de retenção dos maiores criadores</h4>
+                    <p>Desconstrução de vídeos virais para você replicar a estrutura</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4>Como manter a pessoa até o final</h4>
+                    <p>Técnicas de ritmo e edição que prendem atenção sem truques baratos</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4>Erros fatais que matam seus vídeos</h4>
+                    <p>O que você está fazendo errado sem perceber (e como corrigir)</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h4>Roteiros prontos para adaptar</h4>
+                    <p>Templates de abertura que você pode usar no seu próximo vídeo</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 56px;" class="fade-in">
+                <a href="https://pay.cakto.com.br/u5977qi_671277" class="cta-button" style="background: var(--bg-card); color: var(--accent); border: 2px solid var(--accent);" aria-label="Quero dominar esses gatilhos">
+                    Quero dominar esses gatilhos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOR WHO SECTION -->
+    <section class="for-who">
+        <div class="container">
+            <h2 class="fade-in">Para quem é (e para quem não é)</h2>
+            
+            <div class="comparison fade-in">
+                <div class="comparison-box for">
+                    <h3>É para você se:</h3>
+                    <ul>
+                        <li>Você já cria conteúdo mas não consegue views</li>
+                        <li>Você quer entender o que faz um vídeo viralizar</li>
+                        <li>Você está disposto a testar e aplicar o método</li>
+                        <li>Você quer crescer de forma consistente</li>
+                        <li>Você sabe que o problema não é o algoritmo</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-box not-for">
+                    <h3>NÃO é para você se:</h3>
+                    <ul>
+                        <li>Você procura fórmula mágica sem esforço</li>
+                        <li>Você acha que vai viralizar sem estudar</li>
+                        <li>Você não quer mudar nada no seu conteúdo</li>
+                        <li>Você quer ficar culpando o algoritmo</li>
+                        <li>Você nunca criou um vídeo sequer</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROOF SECTION -->
+    <section class="proof">
+        <div class="container">
+            <h2 class="fade-in">Baseado em análise real</h2>
+            <p class="fade-in">
+                Este método foi desenvolvido após analisar centenas de vídeos virais, 
+                testar dezenas de aberturas diferentes e entender o que realmente funciona.
+            </p>
+            
+            <div class="proof-cards fade-in">
+                <div class="proof-card">
+                    <div class="metric">3s</div>
+                    <div class="label">Tempo médio de decisão do espectador</div>
+                </div>
+                
+                <div class="proof-card">
+                    <div class="metric">7s+</div>
+                    <div class="label">De retenção média em vídeos que aplicam o método</div>
+                </div>
+                
+                <div class="proof-card">
+                    <div class="metric">100+</div>
+                    <div class="label">Vídeos analisados para criar o método</div>
+                </div>
+            </div>
+            
+            <p class="fade-in" style="text-align: center; margin-top: 40px;">
+                Na maioria dos vídeos analisados, quem passa dos primeiros segundos tende a ficar até o final. O segredo está em prender atenção desde o frame 1.
+            </p>
+        </div>
+    </section>
+
+    <!-- OFFER SECTION -->
+    <section class="offer" id="oferta">
+        <div class="container">
+            <h2 class="fade-in">O que você recebe</h2>
+            
+            <div class="offer-box fade-in">
+                <div class="offer-content">
+                    <h3>Método Primeiros 3 Segundos</h3>
+                    
+                    <ul class="includes-list">
+                        <li>
+                            <strong>Módulo 1:</strong> Fundamentos da Atenção
+                            <span style="display:block; font-size: 15px; color: var(--text-secondary); margin-top: 8px;">
+                                Entenda como funciona a psicologia por trás do scroll
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Módulo 2:</strong> Anatomia do Hook Perfeito
+                            <span style="display:block; font-size: 15px; color: var(--text-secondary); margin-top: 8px;">
+                                Desconstrução de aberturas virais + templates prontos
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Módulo 3:</strong> Retenção do Início ao Fim
+                            <span style="display:block; font-size: 15px; color: var(--text-secondary); margin-top: 8px;">
+                                Como manter a pessoa assistindo até o último segundo
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Módulo 4:</strong> Análise de Casos Reais
+                            <span style="display:block; font-size: 15px; color: var(--text-secondary); margin-top: 8px;">
+                                Vídeos virais decupados para você replicar o padrão
+                            </span>
+                        </li>
+                        <li>
+                            <strong>Bônus:</strong> Checklist de Pré-Publicação
+                            <span style="display:block; font-size: 15px; color: var(--text-secondary); margin-top: 8px;">
+                                Verifique se seu vídeo está pronto antes de postar
+                            </span>
+                        </li>
+                    </ul>
+                    
+                    <p style="text-align: center; color: var(--text-secondary); margin: 40px 0 16px;">
+                        Um investimento menor do que você gasta testando anúncios sem entender retenção.
+                    </p>
+                    
+                    <div class="price">
+                        <div class="amount">
+                            <span class="currency">R$</span> 47
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <a href="https://pay.cakto.com.br/u5977qi_671277" class="cta-button" onclick="if(window.fbq) fbq('track', 'InitiateCheckout'); if(window.ttq) ttq.track('InitiateCheckout');" aria-label="Acessar checkout do produto">
+                            Começar agora
+                        </a>
+                        <p style="font-size: 14px; color: var(--text-secondary); margin-top: 16px;">
+                            Acesso imediato após a compra
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="fade-in">Está na hora de parar de reclamar do algoritmo</h2>
+            <p class="fade-in" style="font-size: 20px; color: var(--text-secondary); margin-bottom: 40px;">
+                E começar a dominar o que realmente importa: os primeiros segundos.
+            </p>
+            <a href="https://pay.cakto.com.br/u5977qi_671277" class="cta-button fade-in" aria-label="Quero dominar o método">Quero dominar o método</a>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="fade-in">Perguntas frequentes</h2>
+            
+            <div class="faq-list fade-in">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Isso funciona para qualquer nicho?
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Sim. Os princípios de atenção e retenção são universais. Não importa se você fala de fitness, educação, entretenimento ou negócios — o cérebro humano responde aos mesmos gatilhos. O método te ensina a adaptar os conceitos para o seu conteúdo.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Preciso ter seguidores para funcionar?
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Não. Na verdade, quem tem poucos seguidores pode se beneficiar ainda mais, porque o algoritmo prioriza retenção sobre tamanho de audiência. Se você conseguir prender atenção, o algoritmo vai empurrar seu vídeo, independente de quantos seguidores você tem.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Quanto tempo leva para ver resultado?
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Depende da sua consistência. Alguns criadores veem melhora já no primeiro vídeo aplicando o método. Outros precisam de alguns testes para ajustar. O importante é que você terá um norte claro do que fazer, ao invés de ficar testando no escuro.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        É preciso equipamento caro?
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Não. O método foca na estrutura do conteúdo, não em produção. Você pode aplicar tudo isso com o celular na mão. Atenção não vem de câmera cara — vem de como você começa o vídeo.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Como eu recebo o acesso?
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Imediatamente após a compra, você recebe um e-mail com login e senha para acessar a plataforma. Todo o conteúdo está disponível para você assistir no seu ritmo.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        Tem garantia?
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Sim. Se você assistir o conteúdo, aplicar o método e mesmo assim achar que não valeu a pena, você tem 7 dias para pedir o reembolso total. Sem burocracia.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+    
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-consent-content">
+            <p>
+                Usamos cookies e pixels de rastreamento para melhorar sua experiência e analisar o tráfego do site. 
+                Ao aceitar, você concorda com nossa <a href="#" style="color: var(--accent); text-decoration: none;">Política de Privacidade</a>.
+            </p>
+            <div class="cookie-consent-buttons">
+                <button class="cookie-btn cookie-btn-decline" onclick="declineCookies()">Recusar</button>
+                <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">Aceitar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Método Primeiros 3 Segundos. Todos os direitos reservados.</p>
+            <p style="margin-top: 8px;">
+                <a href="#" style="color: var(--text-secondary); text-decoration: none;">Termos de Uso</a> | 
+                <a href="#" style="color: var(--text-secondary); text-decoration: none;">Política de Privacidade</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Cookie Consent Management
+        const CONSENT_KEY = 'cookie_consent';
+        
+        function loadPixels() {
+            // Meta Pixel Code - SUBSTITUIR COM SEU PIXEL ID
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', 'SEU_PIXEL_ID_AQUI');
+            fbq('track', 'PageView');
+            
+            // TikTok Pixel Code - SUBSTITUIR COM SEU PIXEL ID
+            !function (w, d, t) {
+              w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+              ttq.load('SEU_PIXEL_ID_TIKTOK');
+              ttq.page();
+            }(window, document, 'ttq');
+        }
+        
+        function acceptCookies() {
+            localStorage.setItem(CONSENT_KEY, 'accepted');
+            document.getElementById('cookieConsent').classList.remove('show');
+            loadPixels();
+        }
+        
+        function declineCookies() {
+            localStorage.setItem(CONSENT_KEY, 'declined');
+            document.getElementById('cookieConsent').classList.remove('show');
+        }
+        
+        // Check consent on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const consent = localStorage.getItem(CONSENT_KEY);
+            
+            if (consent === 'accepted') {
+                loadPixels();
+            } else if (consent === 'declined') {
+                // Do nothing, pixels won't load
+            } else {
+                // Show banner if no consent yet
+                setTimeout(() => {
+                    document.getElementById('cookieConsent').classList.add('show');
+                }, 1000);
+            }
+        });
+        
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all other items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                    question.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
